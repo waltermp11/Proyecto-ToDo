@@ -1,11 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto To Do</title>
+    <title>Be Organized - Web Todo</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/CSS/styles.css">
 </head>
-<body>
-    
+
+<body class="bg-body-dark text-white p-3 p-md-4">
+
+    <div class="container-fluid max-width-container">
+
+
+        <header class="custom-card navbar-card d-flex justify-content-between align-items-center px-4 py-3 mb-4">
+            <h1 class="h4 mb-0 fw-bold text-white">Be Organized - Web Todo</h1>
+            <div class="d-flex gap-2">
+                <button class="btn btn-custom-green btn-pill fw-bold">Ingresar</button>
+                <button class="btn btn-custom-orange btn-pill fw-bold">Registrarse</button>
+            </div>
+        </header>
+
+
+        <div class="row g-4">
+
+            <!-- Panel izquierdo - form -->
+            <div class="col-12 col-lg-5 col-xl-4">
+                <div class="custom-card p-4 h-100">
+                    <h2 class="h2 text-center fw-bold mb-4">Formulario</h2>
+
+                    <form onsubmit="event.preventDefault();">
+
+                        <div class="mb-3">
+                            <label for="taskName" class="form-label fw-bold small text-light">Descripcion tarea:</label>
+                            <input type="text" class="form-control custom-input" id="taskName">
+                        </div>
+
+
+                        <div class="mb-2">
+                            <label for="taskDetails" class="form-label fw-bold small text-light">Detalles:</label>
+                            <textarea class="form-control custom-input custom-textarea" id="taskDetails"
+                                rows="4"></textarea>
+                        </div>
+                        <!--Panel derecho - listado de tareas-->
+
+                        <div class="d-flex justify-content-end mb-4">
+                            <button class="btn btn-custom-orange btn-sm-custom fw-bold">Mas ajustes</button>
+                        </div>
+
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-light d-block mb-2">Asignacion de
+                                Prioridad:</label>
+                            <div class="d-flex gap-2 justify-content-between">
+                                <button type="button" class="btn btn-custom-green flex-fill fw-bold py-2">Baja</button>
+                                <button type="button"
+                                    class="btn btn-custom-yellow flex-fill fw-bold py-2">Media</button>
+                                <button type="button" class="btn btn-custom-red flex-fill fw-bold py-2">Alta</button>
+                            </div>
+                        </div>
+
+
+                        <div class="mt-4 pt-2">
+                            <button type="submit" class="btn btn-custom-orange w-100 py-2 fs-5 fw-bold">Enviar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+
+            <div class="col-12 col-lg-7 col-xl-8">
+                <div class="custom-card p-4 h-100">
+                    <h2 class="h2 fw-bold mb-4">Lista de Tareas</h2>
+
+                    <div class="d-flex flex-column gap-3">
+
+
+
+                        <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
+                            <span class="status-dot bg-custom-green"></span>
+                            <div class="contenido-tarea  flex-grow-1 mx-3">
+                                <span>Tarea 1 - Descripcion tarea 1</span>
+                            </div>
+                            <span class="status-badge bg-custom-green"></span>
+                        </div>
+
+
+                        <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
+                            <span class="status-dot bg-custom-red"></span>
+                            <div class="contenido-tarea  flex-grow-1 mx-3">
+                                <span>Tarea 2 - Descripcion tarea 2</span>
+                            </div>
+                            <span class="status-badge bg-custom-red"></span>
+                        </div>
+
+
+                        <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
+                            <span class="status-dot bg-custom-red"></span>
+                            <div class="contenido-tarea  flex-grow-1 mx-3">
+                                <span>Tarea 3 - Descripcion tarea 3</span>
+                            </div>
+                            <span class="status-badge bg-custom-red"></span>
+                        </div>
+
+
+                        <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
+                            <span class="status-dot bg-custom-green"></span>
+                            <div class="contenido-tarea  flex-grow-1 mx-3">
+                                <span>Tarea 4 - Descripcion tarea 4</span>
+                            </div>
+                            <span class="status-badge bg-custom-green"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+        </script>
 </body>
+
 </html>
