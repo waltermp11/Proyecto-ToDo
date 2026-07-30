@@ -2,7 +2,13 @@
 Herramienta para gestion de tareas, utilizando todos los conocimiento de Full Stack.
 
 **** 
-# Objetivo - Alcance
+## Links de Proyecto
+
+- Trello --> https://trello.com/invite/b/6a6ba800249e6d693468007c/ATTI77befa9ee68619dfd711c6ce7f256a547FBECF93/proyecto-planificador-de-tareas-web✅
+
+
+****
+## Objetivo - Alcance
 Desarrollar por fases el proyecto, manejando sprint y buenas practicas.
 
 ## Frontend
