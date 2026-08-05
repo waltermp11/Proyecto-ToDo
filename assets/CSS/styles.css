@@ -46,12 +46,14 @@ body.bg-body-dark {
   border: 2px solid var(--border-amber);
   border-radius: 10px;
   padding: 0.6rem 0.8rem;
+  color:var(--color-font-light);
 }
 
 .custom-input:focus {
   background-color: var(--bg-input);
   border-color: #d97706;
   box-shadow: 0 0 0 0.25rem rgba(245, 158, 11, 0.3);
+  color: var(--color-font-light);
 }
 
 .custom-textarea {
@@ -140,8 +142,10 @@ body.bg-body-dark {
 
 .contenido-tarea {
 
-  height: 20px;
+  height: fit-content;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 
 
 }
@@ -175,4 +179,8 @@ body.bg-body-dark {
 
 .bg-custom-red {
   background-color: var(--btn-red);
+}
+
+.bg-custom-yellow {
+  background-color: var(--btn-yellow);
 }
