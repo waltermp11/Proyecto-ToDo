@@ -49,6 +49,21 @@ body.bg-body-dark {
   color:var(--color-font-light);
 }
 
+.form-control{
+  background-color: var(--bg-input);
+  color:white
+}
+
+.form-control:active{
+  background-color: var(--bg-input);
+  color:white
+}
+
+.form-control:focus{
+  background-color: var(--bg-input);
+  color:white
+}
+
 .custom-input:focus {
   background-color: var(--bg-input);
   border-color: #d97706;

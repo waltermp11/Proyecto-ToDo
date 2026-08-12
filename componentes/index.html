@@ -33,18 +33,18 @@
                 <div class="custom-card p-4 h-100">
                     <h2 class="h2 text-center fw-bold mb-4">Formulario</h2>
 
-                    <form onsubmit="event.preventDefault();">
+                    <form id="formulario" onsubmit="event.preventDefault();">
 
                         <div class="mb-3">
                             <label for="taskName" class="form-label fw-bold small text-light">Nombre de la tarea:
                             </label>
-                            <input type="text" class="form-control custom-input" id="taskName">
+                            <input type="text" class="form-control custom-input" id="nombreTarea">
                         </div>
 
 
                         <div class="mb-2">
                             <label for="taskDetails" class="form-label fw-bold small text-light">Descripción: </label>
-                            <textarea class="form-control custom-input custom-textarea" id="taskDetails"
+                            <textarea class="form-control custom-input custom-textarea" id="descripcionTarea" 
                                 rows="4"></textarea>
                         </div>
 
@@ -74,106 +74,110 @@
 
                         <div class="mb-4">
                             <label class="form-label fw-bold small text-light d-block mb-2">Asignacion de
-                                Prioridad:</label>
+                                Prioridad: </label>
                             <div class="d-flex gap-2 justify-content-between">
-                                <button type="button" class="btn btn-custom-green flex-fill fw-bold py-2">Baja</button>
-                                <button type="button"
-                                    class="btn btn-custom-yellow flex-fill fw-bold py-2">Media</button>
-                                <button type="button" class="btn btn-custom-red flex-fill fw-bold py-2">Alta</button>
-                            </div>
+                                <button type="button" class="btn btn-custom-green btn-prioridad flex-fill fw-bold py-2"
+                                    data-value="Baja">Baja</button>
+                                <button type="button" class="btn btn-custom-yellow btn-prioridad flex-fill fw-bold py-2"
+                                    data-value="Media">Media</button>
+                                <button type="button" class="btn btn-custom-red btn-prioridad flex-fill fw-bold py-2"
+                                    data-value="Alta">Alta</button>
                         </div>
-
-
-
-                        <div class="mt-4 pt-2">
-                            <button type="submit" class="btn btn-custom-orange w-100 py-2 fs-5 fw-bold">Enviar</button>
-                        </div>
-                    </form>
-
+                        <input type="hidden" id="taskPrioridad" value="">
                 </div>
-            </div>
-
-            <!--Panel derecho - listado de tareas-->
-            <div class="col-12 col-lg-7 col-xl-8">
-                <div class="custom-card p-4 h-100">
-                    <h2 class="h2 fw-bold mb-4">Lista de Tareas</h2>
-
-                    <div class="d-flex flex-column gap-3">
 
 
 
-                        <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
-
-                            <div class="contenido-tarea  flex-grow-1 mx-3">
-                                <span> <strong>Tarea 1 - Venta de Computador Hp ENVY</strong></span>
-
-                                <p><strong>Descripcion: </strong> Se tiene que formatear primeramente el portati.
-                                    Entregar con linux y verificacion de drivers ✅</p>
-                                <p><strong>Fecha de Entrega: </strong> 09/09/2026</p>
-
-
-
-
-                            </div>
-                            <span class="status-badge bg-custom-green"></span>
-                        </div>
-
-
-                        <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
-
-                            <div class="contenido-tarea  flex-grow-1 mx-3">
-                                <span> <strong>Tarea 2 - Desarrollo de Informe tecnovigilancia 1</strong></span>
-                                <p><strong>Descripcion: </strong> Se tiene que desarrollar el informe de tecnovigliancia
-                                    de los servicios, cirugia, UCI/UCE y hospitalizacion 1-2. Con fotos y detalles de lo
-                                    encontrado en la ronda semanal.</p>
-                                <p><strong>Fecha de Entrega: </strong> 09/09/2026</p>
-                            </div>
-                            <span class="status-badge bg-custom-red"></span>
-                        </div>
-
-
-                        <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
-
-                            <div class="contenido-tarea  flex-grow-1 mx-3">
-                                <span> <strong>Tarea 3 - Desarrollo de Informe tecnovigilancia 2</strong></span>
-                                <p><strong>Descripcion: </strong> Se tiene que desarrollar el informe de tecnovigliancia
-                                    de los servicios, hemodinamia, Imagenes diagnosticas y General. Con fotos y detalles
-                                    de lo encontrado en la ronda semanal.</p>
-                                <p><strong>Fecha de Entrega: </strong> 09/12/2026</p>
-                            </div>
-                            <span class="status-badge bg-custom-red"></span>
-                        </div>
-
-
-                        <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
-                            <div class="contenido-tarea  flex-grow-1 mx-3">
-                                <span> <strong>Tarea 4 - Ir a Mercar</strong></span>
-                                <p><strong>Descripcion: </strong> Ir a comprar la carne y las verduras </strong>
-                                    09/13/2026</p>
-                            </div>
-                            <span class="status-badge bg-custom-yellow"></span>
-                        </div>
-
-                        <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
-                            <div class="contenido-tarea  flex-grow-1 mx-3">
-                                <span> <strong>Tarea 5 - Organizar Casa - sala de estudio</strong></span>
-                                <p><strong>Descripcion: </strong> Limpiar baño, lavar ropa y tendidos, organizar
-                                    escritorio de estudio </strong>
-                                    09/15/2026</p>
-                            </div>
-                            <span class="status-badge bg-custom-green"></span>
-                        </div>
-
-
-                    </div>
+                <div class="mt-4 pt-2">
+                    <button type="submit" class="btn btn-custom-orange w-100 py-2 fs-5 fw-bold">Enviar</button>
                 </div>
-            </div>
+                </form>
 
+            </div>
         </div>
+
+        <!--Panel derecho - listado de tareas-->
+        <div class="col-12 col-lg-7 col-xl-8">
+            <div class="custom-card p-4 h-100">
+                <h2 class="h2 fw-bold mb-4">Lista de Tareas</h2>
+
+                <div class="d-flex flex-column gap-3">
+
+
+
+                    <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
+
+                        <div class="contenido-tarea  flex-grow-1 mx-3">
+                            <span> <strong>Tarea 1 - Venta de Computador Hp ENVY</strong></span>
+
+                            <p><strong>Descripcion: </strong> Se tiene que formatear primeramente el portati.
+                                Entregar con linux y verificacion de drivers ✅</p>
+                            <p><strong>Fecha de Entrega: </strong> 09/09/2026</p>
+
+
+
+
+                        </div>
+                        <span class="status-badge bg-custom-green"></span>
+                    </div>
+
+
+                    <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
+
+                        <div class="contenido-tarea  flex-grow-1 mx-3">
+                            <span> <strong>Tarea 2 - Desarrollo de Informe tecnovigilancia 1</strong></span>
+                            <p><strong>Descripcion: </strong> Se tiene que desarrollar el informe de tecnovigliancia
+                                de los servicios, cirugia, UCI/UCE y hospitalizacion 1-2. Con fotos y detalles de lo
+                                encontrado en la ronda semanal.</p>
+                            <p><strong>Fecha de Entrega: </strong> 09/09/2026</p>
+                        </div>
+                        <span class="status-badge bg-custom-red"></span>
+                    </div>
+
+
+                    <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
+
+                        <div class="contenido-tarea  flex-grow-1 mx-3">
+                            <span> <strong>Tarea 3 - Desarrollo de Informe tecnovigilancia 2</strong></span>
+                            <p><strong>Descripcion: </strong> Se tiene que desarrollar el informe de tecnovigliancia
+                                de los servicios, hemodinamia, Imagenes diagnosticas y General. Con fotos y detalles
+                                de lo encontrado en la ronda semanal.</p>
+                            <p><strong>Fecha de Entrega: </strong> 09/12/2026</p>
+                        </div>
+                        <span class="status-badge bg-custom-red"></span>
+                    </div>
+
+
+                    <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
+                        <div class="contenido-tarea  flex-grow-1 mx-3">
+                            <span> <strong>Tarea 4 - Ir a Mercar</strong></span>
+                            <p><strong>Descripcion: </strong> Ir a comprar la carne y las verduras </strong>
+                                09/13/2026</p>
+                        </div>
+                        <span class="status-badge bg-custom-yellow"></span>
+                    </div>
+
+                    <div class="task-item d-flex align-items-center justify-content-between px-3 py-2">
+                        <div class="contenido-tarea  flex-grow-1 mx-3">
+                            <span> <strong>Tarea 5 - Organizar Casa - sala de estudio</strong></span>
+                            <p><strong>Descripcion: </strong> Limpiar baño, lavar ropa y tendidos, organizar
+                                escritorio de estudio </strong>
+                                09/15/2026</p>
+                        </div>
+                        <span class="status-badge bg-custom-green"></span>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
     </script>
+    <script src="app.js"></script>
 </body>
 
 </html>
