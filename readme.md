@@ -8,6 +8,8 @@ Herramienta para gestion de tareas, utilizando todos los conocimiento de Full St
 
 - Figma --> https://www.figma.com/design/fUg3cXqHxx2NiIDRQJFFzm/Proyecto-Integrador---Todo?node-id=1-20&t=1VLm3St7ZTKgZhvl-1
 
+- pagina --> https://waltermp11.github.io/Proyecto-ToDo/
+
 
 ****
 ## Objetivo - Alcance
