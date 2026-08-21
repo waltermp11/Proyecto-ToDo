@@ -111,3 +111,27 @@ function validarCampos(datos) {
         return false;
     }
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    
+    function activarCheckboxesTareas() {
+        const checkboxes = document.querySelectorAll('.chk-tarea');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                const tarjeta = e.target.closest('.task-item');
+
+                if (e.target.checked) {
+                    tarjeta.classList.add('tarea-completada');
+                } else {
+                    tarjeta.classList.remove('tarea-completada');
+                }
+            });
+        });
+    }
+
+    // Inicializar listeners en el HTML existente
+    activarCheckboxesTareas();
+});
