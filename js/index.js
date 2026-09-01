@@ -6,12 +6,12 @@ const inputPrioridad = document.getElementById('taskPrioridad');
 
 botonesPrioridad.forEach(boton => {
     boton.addEventListener('click', (e) => {
-       
+
         botonesPrioridad.forEach(b => b.classList.remove('active', 'border', 'border-white'));
-        
-       
+
+
         e.target.classList.add('active', 'border', 'border-white');
-        
+
         // Guardar el valor en el input hidden
         inputPrioridad.value = e.target.getAttribute('data-value');
     });
@@ -116,8 +116,12 @@ function renderizarTareaHTML(tarea) {
                 </div>
                 <div class="information-card">
                     <span><strong>Tarea ${tarea.id} - ${tarea.nombreTarea}</strong></span>
-                    <p><strong>Descripción: </strong> ${tarea.descripcionTarea}</p>
-                    <p><strong>Fecha de Entrega: </strong> ${tarea.fecha}</p>
+                    <p><strong>Descripción: </strong> ${tarea.descripcion}</p>
+
+                    <div class="botton-card">
+                        <p><strong>Fecha de Entrega: </strong> ${tarea.fecha}</p>
+                        <button class="btn btn-outline-danger delete-button"><i class="bi bi-trash-fill"></i></button>
+                    </div>
                     <p class="mb-0"><small>Estado: ${tarea.estado} | Prioridad: ${tarea.prioridad}</small></p>
                 </div>
             </div>
@@ -128,6 +132,21 @@ function renderizarTareaHTML(tarea) {
     contenedorLista.insertAdjacentHTML('afterbegin', plantillaHTML);
     activarCheckboxesTareas(); // Reactivar escucha de checkboxes para la nueva tarea
 }
+
+contenedorLista.addEventListener('click', (event) => {
+    const botonEliminar = event.target.closest('.delete-button');
+
+    if (botonEliminar) {
+        const parentTask = botonEliminar.closest('.task-item');
+        // Cambiamos dataset.taskId por dataset.id para que coincida con la plantilla
+        const taskId = Number(parentTask.dataset.id);
+
+        taskManager.deleteTask(taskId);
+        parentTask.remove();
+    }
+});
+
+
 
 function activarCheckboxesTareas() {
     const checkboxes = document.querySelectorAll('.chk-tarea');
@@ -144,9 +163,6 @@ function activarCheckboxesTareas() {
     });
 }
 
-// ==========================================
-// 4. CARGA INICIAL (DOM READY)
-// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
     activarCheckboxesTareas();
 });

@@ -94,6 +94,18 @@ body.bg-body-dark {
   color: white;
 }
 
+.botton-card{
+  display: flex;
+  justify-content: space-between;
+}
+
+.bi.bi-trash-fill{
+
+  font-size: 1.5rem;
+}
+
+
+
 .btn-custom-orange {
   background-color: var(--btn-orange);
   color: white;
@@ -200,6 +212,7 @@ body.bg-body-dark {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 
 .status-dot {

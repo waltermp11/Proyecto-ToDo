@@ -20,6 +20,21 @@ class TaskManager {
         this.currentId++;
 
         console.log("Tarea agregada a la lista interna:", nuevaTarea);
-        return nuevaTarea; 
+        return nuevaTarea;
     }
+
+    deleteTask(taskId) {
+        const newTasks = [];
+        for (let task of this.tasks) {
+            if (task.id !== taskId) {
+                newTasks.push(task);
+            }
+        }
+        this.tasks = newTasks;
+    }
+
+
+
+
+
 }
