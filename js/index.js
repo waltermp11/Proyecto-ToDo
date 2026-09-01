@@ -3,6 +3,7 @@ const taskManager = new TaskManager();
 const formulario = document.getElementById("formulario");
 const botonesPrioridad = document.querySelectorAll('.btn-prioridad');
 const inputPrioridad = document.getElementById('taskPrioridad');
+const contenedorLista = document.getElementById('listadoDeTareas');
 
 botonesPrioridad.forEach(boton => {
     boton.addEventListener('click', (e) => {
@@ -133,16 +134,39 @@ function renderizarTareaHTML(tarea) {
     activarCheckboxesTareas(); // Reactivar escucha de checkboxes para la nueva tarea
 }
 
+// Evento Delegado para eliminar tareas
 contenedorLista.addEventListener('click', (event) => {
     const botonEliminar = event.target.closest('.delete-button');
 
     if (botonEliminar) {
         const parentTask = botonEliminar.closest('.task-item');
-        // Cambiamos dataset.taskId por dataset.id para que coincida con la plantilla
-        const taskId = Number(parentTask.dataset.id);
 
-        taskManager.deleteTask(taskId);
-        parentTask.remove();
+        if (parentTask) {
+
+            const taskId = Number(parentTask.dataset.id);
+
+
+            if (taskId) {
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Tarea Eliminada!',
+                    text: 'La tarea se ha eliminado con éxito.',
+                    showConfirmButton: true,
+                    timer: 2000
+                });
+                taskManager.deleteTask(taskId);
+                taskManager.save();
+                taskManager.render();
+
+                // Eliminar del DOM
+                parentTask.remove();
+
+                console.log(`Tarea dinámica ${taskId} eliminada con éxito.`);
+            } else {
+                console.warn("Las tareas estáticas del HTML no se pueden eliminar.");
+            }
+        }
     }
 });
 
