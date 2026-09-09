@@ -168,10 +168,12 @@ body.bg-body-dark {
   opacity: 0.6;
   border-left: 50px solid #198754;
   transition: all 0.6s;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 
-.task-item.tarea-completada .contenido-tarea {
+.task-item.tarea-completada .contenido-tarea {  
   text-decoration: line-through;
 }
 
@@ -183,6 +185,8 @@ body.bg-body-dark {
   box-shadow: var(--shadow-btn);
   position: relative;
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .task-item:hover {
@@ -213,6 +217,8 @@ body.bg-body-dark {
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word
 }
 
 .status-dot {
