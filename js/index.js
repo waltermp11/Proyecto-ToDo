@@ -1,24 +1,27 @@
 const taskManager = new TaskManager();
 
-
+// Cargar datos guardados y renderizar al iniciar la aplicación
 taskManager.load();
 taskManager.render();
 
+// Referencias a elementos del DOM
 const formulario = document.getElementById("formulario");
 const botonesPrioridad = document.querySelectorAll('.btn-prioridad');
 const inputPrioridad = document.getElementById('taskPrioridad');
 const contenedorLista = document.getElementById('listadoDeTareas');
 
-
+// Manejo de la selección de prioridad usando currentTarget para evitar fallos de target
 botonesPrioridad.forEach(boton => {
     boton.addEventListener('click', (e) => {
         botonesPrioridad.forEach(b => b.classList.remove('active', 'border', 'border-white'));
-        e.target.classList.add('active', 'border', 'border-white');
-        inputPrioridad.value = e.target.getAttribute('data-value');
+        
+        // e.currentTarget asegura tomar el <button> completo aunque tenga un icono dentro
+        e.currentTarget.classList.add('active', 'border', 'border-white');
+        inputPrioridad.value = e.currentTarget.getAttribute('data-value');
     });
 });
 
-
+// Evento Submit del Formulario
 formulario.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -30,8 +33,7 @@ formulario.addEventListener("submit", function (e) {
         taskPrioridad: document.getElementById("taskPrioridad").value
     };
 
-    const isValido = validarCampos(datosTarea);
-    if (isValido) {
+    if (validarCampos(datosTarea)) {
         taskManager.addTask(
             datosTarea.nombreTarea,
             datosTarea.descripcionTarea,
@@ -40,7 +42,6 @@ formulario.addEventListener("submit", function (e) {
             datosTarea.taskPrioridad
         );
 
-        
         taskManager.save();
         taskManager.render();
 
@@ -50,55 +51,63 @@ formulario.addEventListener("submit", function (e) {
     }
 });
 
-
+// Delegación de eventos centralizada en el contenedor de tareas
 contenedorLista.addEventListener('click', (event) => {
     const parentTask = event.target.closest('.task-item');
     if (!parentTask) return;
 
     const taskId = Number(parentTask.dataset.taskId);
+    const task = taskManager.getTaskById(taskId);
 
-    
+    // 1. Botón "Mark As Done"
     if (event.target.classList.contains('done-button')) {
-        const task = taskManager.getTaskById(taskId);
-
         if (task) {
             task.estado = 'DONE';
-            
-            
             taskManager.save();
             taskManager.render();
 
             Swal.fire({
                 icon: 'info',
                 title: '¡Tarea Completada!',
-                text: `La tarea ${taskId}, fue marcada como DONE.`,
+                text: `La tarea ${taskId} fue marcada como DONE.`,
                 timer: 1500,
                 showConfirmButton: false
             });
         }
+        return;
     }
 
-    
-    const botonEliminar = event.target.closest('.delete-button');
-    if (botonEliminar) {
-        if (taskId) {
-            taskManager.deleteTask(taskId);
-            taskManager.save(); // Guardar cambios tras la eliminación
-            taskManager.render();
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Tareaa eliminada',
-                text: 'La tarea se ha eliminado ❌.',
-                showConfirmButton: true,
-                timer: 1500
-            });
+    // 2. Checkbox de la Tarea
+    if (event.target.classList.contains('chk-tarea')) {
+        if (task) {
+            const isChecked = event.target.checked;
+            task.estado = isChecked ? 'DONE' : 'Pendiente';
+            
+            taskManager.save();
+            // Toggle visual dinámico sin re-renderizar toda la lista
+            parentTask.classList.toggle('tarea-completada', isChecked);
         }
+        return;
+    }
+
+    // 3. Botón Eliminar Tarea
+    const botonEliminar = event.target.closest('.delete-button');
+    if (botonEliminar && taskId) {
+        taskManager.deleteTask(taskId);
+        taskManager.save();
+        taskManager.render();
+
+        Swal.fire({
+            icon: 'success',
+            title: '¡Tarea Eliminada!',
+            text: 'La tarea se ha eliminado con éxito.',
+            showConfirmButton: true,
+            timer: 1500
+        });
     }
 });
 
-
-
+// Función de validación (Devuelve booleano puro)
 function validarCampos(datos) {
     if (datos.nombreTarea === "") {
         Swal.fire({ icon: 'error', title: 'Campo requerido', text: 'El campo no puede estar vacío, ingrese un nombre para la tarea.' });
@@ -118,6 +127,9 @@ function validarCampos(datos) {
 
     if (datos.taskFechaEntrega === "") {
         Swal.fire({ icon: 'error', title: 'Campo requerido', text: 'La fecha de entrega no puede estar vacía.' });
+        return false;
+    } else if (new Date(datos.taskFechaEntrega) < new Date()) {
+        Swal.fire({ icon: 'error', title: 'Fecha inválida', text: 'La fecha de entrega no puede ser anterior a la fecha actual.' });
         return false;
     }
 
