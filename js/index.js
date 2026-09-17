@@ -97,26 +97,7 @@ contenedorLista.addEventListener('click', (event) => {
     }
 });
 
-function activarCheckboxesTareas() {
-    const checkboxes = document.querySelectorAll('.chk-tarea');
 
-    checkboxes.forEach(checkbox => {
-        checkbox.onclick = (e) => {
-            const tarjeta = e.target.closest('.task-item');
-            const taskId = Number(tarjeta.dataset.taskId);
-            const task = taskManager.getTaskById(taskId);
-
-            if (e.target.checked) {
-                tarjeta.classList.add('tarea-completada');
-                if (task) task.estado = 'DONE';
-            } else {
-                tarjeta.classList.remove('tarea-completada');
-                if (task) task.estado = 'Pendiente';
-            }
-            taskManager.save(); // Persistir estado del checkbox
-        };
-    });
-}
 
 function validarCampos(datos) {
     if (datos.nombreTarea === "") {
